@@ -1,82 +1,44 @@
-'use client';
+import React, { useState } from 'react';
 
-import { Tabs } from 'flowbite-react';
-import { HiAdjustments, HiClipboardList, HiUserCircle } from 'react-icons/hi';
-import { MdDashboard } from 'react-icons/md';
+const Tabs = () => {
+  const [activeTab, setActiveTab] = useState('profile'); // Default active tab
 
-export default function FullWidthTabs() {
+  const handleTabClick = (tabName) => {
+    setActiveTab(tabName);
+  };
+
+  const renderTabs = [
+    { name: 'XSS',label: 'XSS' },
+    { name: 'DDos',  label: 'DDos' },
+    { name: 'XSS2', label: 'XSS2' },
+    { name: 'BF', label: 'BF' },
+  ];
+
   return (
-    <Tabs.Group
-      aria-label="Full width tabs"
-      style="fullWidth"
-    >
-      <Tabs.Item
-        active
-        icon={HiUserCircle}
-        title="Profile"
-      >
-        <p>
-          This is
-          <span className="font-medium text-gray-800 dark:text-white">
-            Profile tab's associated content
-          </span>
-          .
-          Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to
-          control the content visibility and styling.
-        </p>
-      </Tabs.Item>
-      <Tabs.Item
-        icon={MdDashboard}
-        title="Dashboard"
-      >
-        <p>
-          This is
-          <span className="font-medium text-gray-800 dark:text-white">
-            Dashboard tab's associated content
-          </span>
-          .
-          Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to
-          control the content visibility and styling.
-        </p>
-      </Tabs.Item>
-      <Tabs.Item
-        icon={HiAdjustments}
-        title="Settings"
-      >
-        <p>
-          This is
-          <span className="font-medium text-gray-800 dark:text-white">
-            Settings tab's associated content
-          </span>
-          .
-          Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to
-          control the content visibility and styling.
-        </p>
-      </Tabs.Item>
-      <Tabs.Item
-        icon={HiClipboardList}
-        title="Contacts"
-      >
-        <p>
-          This is
-          <span className="font-medium text-gray-800 dark:text-white">
-            Contacts tab's associated content
-          </span>
-          .
-          Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to
-          control the content visibility and styling.
-        </p>
-      </Tabs.Item>
-      <Tabs.Item
-        disabled
-        title="Disabled"
-      >
-        <p>
-          Disabled content
-        </p>
-      </Tabs.Item>
-    </Tabs.Group>
-  )
-}
+    <div>
+      <div className="flex  justify-center items-center  mt-20 overflow-x-auto whitespace-nowrap">
+      <div className="w-auto py-2 rounded-3xl  px-6 bg-[#1F1F1F]        ">
+        {renderTabs.map((tab) => (
+          
+          <button
+            key={tab.name}
+            className={`inline-flex rounded-3xl items-center h-12 px-2 py-2 text-center text-white  ${
+              activeTab === tab.name
+                ? ' bg-white dark:bg-blue-700 font-bold text-black '
+                : ' text-white'
+            } sm:px-6 -px-1 dark:text-white whitespace-nowrap cursor-base focus:outline-none hover:border-gray-400 dark:hover:border-gray-300`}
+            onClick={() => handleTabClick(tab.name)}
+          >
+           
 
+            <span className="mx-1 text-sm sm:text-base">{tab.label}</span>
+          </button>
 
+        ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Tabs;
